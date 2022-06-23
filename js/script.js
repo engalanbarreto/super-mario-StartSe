@@ -18,8 +18,10 @@ const jump = () => {
 // usar uma função em determinado intervalo de tempo,
 // para isso é passado 2 parametros. A função e o tempo   
 const loopGame = setInterval(() => {
-    const pipePosition = pipe.offSetLeft;
-    const marioPosition = +window.getComputedStyle(mario).bottom.replace('px', '');
+    const pipePosition = pipe.offsetLeft;
+    const marioPosition = +window
+        .getComputedStyle(mario)
+        .bottom.replace('px', '');
 
     if (pipePosition <= 120 && pipePosition > 0 && marioPosition < 80) {
         pipe.style.animation = 'none';
