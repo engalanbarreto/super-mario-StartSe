@@ -18,17 +18,22 @@ const jump = () => {
 // usar uma função em determinado intervalo de tempo,
 // para isso é passado 2 parametros. A função e o tempo   
 const loopGame = setInterval(() => {
-    pipe.style.animation = 'none';
-    pipe.style.left = `${pipePosition}px`;
+    const pipePosition = pipe.offSetLeft;
+    const marioPosition = +window.getComputedStyle(mario).bottom.replace('px', '');
 
-    mario.style.animation = 'none';
-    mario.style.bottom = `${marioPosition}px`;
+    if (pipePosition <= 120 && pipePosition > 0 && marioPosition < 80) {
+        pipe.style.animation = 'none';
+        pipe.style.left = `${pipePosition}px`;
 
-    mario.src = './images/mario-game-over.png';
-    mario.style.width = '75px';
-    mario.style.marginLeft = '45px';
+        mario.style.animation = 'none';
+        mario.style.bottom = `${marioPosition}px`;
 
-    clearInterval(loopGame);
-})
+        mario.src = './images/mario-game-over.png';
+        mario.style.width = '75px';
+        mario.style.marginLeft = '45px';
+
+        clearInterval(loopGame);
+    }
+}, 10);
 
 document.addEventListener('keydown', jump);
